@@ -29,9 +29,10 @@ export const getProduct = async (req, res) => {
 //Add a product
 export const addProduct = async (req, res) => {
     try {
-        const { img, brand, title, rating, reviews, sellPrice, orders, mrp, discount } = req.body;
+        // console.log(req.body);
 
-        const newProduct = await Products.create({ img, brand, title, rating, reviews, sellPrice, orders, mrp, discount });
+        const { img, brand, title, rating, reviews, sellPrice, orders, mrp, discount, category } = req.body;
+        const newProduct = await Products.create({ img, brand, title, rating, reviews, sellPrice, orders, mrp, discount, category });
         return res.status(201).json({ message: "Product created successfully", product: newProduct });
     } catch (error) {
         console.error(`Error while adding product: ${error.message}`);
@@ -124,25 +125,25 @@ export const searchProducts = async (req, res) => {
 };
 
 //Sort products
-// export const sortProducts = async (req, res) => {
-//     try {
-//         const { category, criteria, order } = req.params;
-//         const orderby = parseInt(order);
+export const sortProducts = async (req, res) => {
+    try {
+        const { category, criteria, order } = req.params;
+        const orderby = parseInt(order);
 
-//         const result = await Products.find({ category: category })
-//             .sort({ [criteria]: orderby })
+        const result = await Products.find({ category: category })
+            .sort({ [criteria]: orderby })
 
-//         if (!result) {
-//             return res.status(400).json(`Product not found.`)
-//         }
-//         res.status(200).json(result);
+        if (!result) {
+            return res.status(400).json(`Product not found.`)
+        }
+        res.status(200).json(result);
 
 
-//     } catch (error) {
-//         console.error('Error while sorting:', error.message);
-//         res.status(500).send('Internal Server Error');
-//     }
-// }
+    } catch (error) {
+        console.error('Error while sorting:', error.message);
+        res.status(500).send('Internal Server Error');
+    }
+}
 
 export const filterProducts = async (req, res) => {
     try {

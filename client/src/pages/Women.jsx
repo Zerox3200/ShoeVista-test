@@ -11,9 +11,9 @@ const Women = () => {
         let isMounted = true;
         const fetchData = async () => {
             try {
-                const res = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/category/women`);
+                const res = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/products/category/women`);
                 if (isMounted) {
-                    const sorted = res.data.sort((a, b) => parseInt(b.reviews) - parseInt(a.reviews))
+                    const sorted = res?.data?.sort((a, b) => parseInt(b.reviews) - parseInt(a.reviews))
                     setProducts(sorted);
                     setLoading(false);
                 }
@@ -33,7 +33,7 @@ const Women = () => {
     }, [])
     return (
         <>
-           
+
             <Products loading={loading} error={error} products={products} />
         </>
     )

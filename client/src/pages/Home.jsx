@@ -6,7 +6,7 @@ import GenInfo, { Brands } from "../components/GenInfo";
 const Home = () => {
   return (
     <div className="max-w-screen-xl xs:w-[95vw] xs:max-w-[95vw] md:w-full mx-auto ">
-      <Carousel />
+      {/* <Carousel /> */}
       <GenInfo />
       <Brands />
       <div className="md:w-full md:max-w-full xs:mx-2  sm:mx-auto ">
